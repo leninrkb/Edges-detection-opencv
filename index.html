@@ -14,16 +14,16 @@
     
     <div>
       <p>Input</p>
-      <img id="imageSrc" class="w-56" :src="img" alt="img">
+      <img id="inputImage" class="w-56" :src="imgURL" alt="img">
     </div>
     <div>
       <p>Output</p>
-      <img class="w-56" :src="imgOutput" alt="img">
+      <canvas class="w-56" id="outputCanvas"></canvas>
     </div>
     
     <input @change="loadimg" type="file" name="file">
     <button @click="doSomething">Go</button>
-    <canvas  class="w-56" id="outputCanvas"></canvas>
+    
   </div>
   <script src="js/main.js"></script>
   <script src="js/opencv.js" ></script>
