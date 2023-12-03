@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,22 +11,71 @@
 
 <body>
   <div id="app">
-    <h1>{{title}}</h1>
-    
-    <div>
-      <p>Input</p>
-      <img id="inputImage" class="w-56" :src="imgURL" alt="img">
+    <h1 class="p-5 mx-auto w-fit font-semibold text-xl">Object Contours with OpenCV</h1>
+    <div class="w-fit mx-auto px-10">
+      <div class="flex flex-wrap gap-5">
+        <div>
+          <p>Input</p>
+          <img id="inputImage" class="w-56 rounded-lg transition ease-in-out hover:scale-150" :src="imgURL" alt="img">
+        </div>
+        <div>
+          <p>Gray</p>
+          <canvas class="w-56 rounded-lg transition ease-in-out hover:scale-150" id="gray"></canvas>
+        </div>
+        <div>
+          <p>Smoothing</p>
+          <canvas class="w-56 rounded-lg transition ease-in-out hover:scale-150" id="smoothing"></canvas>
+        </div>
+        <div>
+          <p>Edges</p>
+          <canvas class="w-56 rounded-lg transition ease-in-out hover:scale-150" id="edges"></canvas>
+        </div>
+        <div>
+          <p>Filtered Contours</p>
+          <canvas class="w-56 rounded-lg transition ease-in-out hover:scale-150" id="contours"></canvas>
+        </div>
+      </div>
     </div>
-    <div>
-      <p>Output</p>
-      <canvas class="w-56" id="outputCanvas"></canvas>
+    <div class="p-5">
+      <p class="font-bold text-lg">Controls</p>
+      <div class="flex gap-2">
+        <input class="p-2 rounded-lg bg-teal-500" @change="loadimg" type="file" name="file">
+        <br>
+        <button class="px-5 rounded-lg p-2 bg-teal-500 hover:bg-teal-600" @click="doSomething">Go</button>
+      </div>
+      <br>
+      <div class="flex flex-wrap gap-5">
+        <div>
+          <label class="font-semibold" for="area">Area Threshold</label>
+          <br>
+          <input class="bg-gray-200 rounded-lg p-2 " type="number" min="0" max="999" v-model="areaThreshold">
+        </div>
+        <div>
+          <label class="font-semibold" for="area">Kernel Size</label>
+          <br>
+          <input class="bg-gray-200 rounded-lg p-2" type="number" step="2" min="1" max="999" v-model="kernelSize">
+        </div>
+        <div>
+          <label class="font-semibold" for="area">Thickness</label>
+          <br>
+          <input class="bg-gray-200 rounded-lg p-2" type="number" min="-1" max="999" v-model="thickness">
+        </div>
+        <div>
+          <label class="font-semibold" for="area">RGBA</label>
+          <br>
+          <div class="flex gap-2">
+            <input class="bg-red-200 rounded-lg p-2" type="number" min="1" max="255" v-model="Red">
+            <input class="bg-green-200 rounded-lg p-2" type="number" min="1" max="255" v-model="Green">
+            <input class="bg-blue-200 rounded-lg p-2" type="number" min="1" max="255" v-model="Blue">
+            <input class="bg-gray-200 rounded-lg p-2" type="number" min="1" max="255" v-model="Alpha">
+            <input type="color" v-model="color">
+          </div>
+        </div>
+      </div>
     </div>
-    
-    <input @change="loadimg" type="file" name="file">
-    <button @click="doSomething">Go</button>
-    
   </div>
   <script src="js/main.js"></script>
-  <script src="js/opencv.js" ></script>
+  <script src="js/opencv.js"></script>
 </body>
+
 </html>
