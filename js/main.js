@@ -1,4 +1,8 @@
 const app = Vue.createApp({
+  mounted(){
+    this.imgURL = "./img/aersh.jpg";
+    this.imgElement = document.getElementById("inputImage");
+  },
   data() {
     return {
       imgURL: null
