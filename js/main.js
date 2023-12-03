@@ -24,16 +24,24 @@ const app = Vue.createApp({
     },
     doSomething() {
       let img = cv.imread(this.imgElement);
+      // starts gray
       let gray = new cv.Mat();
       cv.cvtColor(img, gray, cv.COLOR_RGBA2GRAY, 0);
       cv.imshow("gray", gray);
+
+      // starts noise reduction
       let kernelSize = new cv.Size(this.kernelSize, this.kernelSize);
       let blurred = new cv.Mat();
       cv.GaussianBlur(gray, blurred, kernelSize, 0, 0, cv.BORDER_DEFAULT);
       cv.imshow("smoothing",blurred);
+      
+
+      // find edges
       let edges = new cv.Mat();
       cv.Canny(blurred, edges, 50, 100, 3, false);
       cv.imshow("edges", edges);
+
+      // find contours
       let contours = new cv.MatVector();
       let hierarchy = new cv.Mat();
       cv.findContours(edges, contours, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
